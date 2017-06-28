@@ -13,9 +13,9 @@ public class Note extends Model {
     @Id
     public Long id;
     @Required
-    public String name;
-    public String cellPhone;
-    public  String homePhone;
+    public String title;
+    public String authorEMail;
+    public String message;
 
     public static Finder<Long, Note> find = new Finder<Long, Note>(
             Long.class, Note.class

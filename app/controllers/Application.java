@@ -10,6 +10,7 @@ import views.html.*;
 
 import java.util.List;
 
+import static controllers.Auth.currentUserEmail;
 import static play.libs.Json.toJson;
 
 public class Application extends Controller {
@@ -18,7 +19,7 @@ public class Application extends Controller {
 
 	// Главная страница
     public static Result index() {
-        if(Auth.currentUserEmail() != null) {
+        if(currentUserEmail() != null) {
             return ok(
                     views.html.index.render(noteForm)
             );
@@ -37,11 +38,11 @@ public class Application extends Controller {
     /**
      * Отдаем базовый шаблон одностраничного приложения
      */
-    public static Result notes() {
+    /*public static Result notes() {
         return ok(
                 views.html.index.render(noteForm)
         );
-    }
+    }*/
 
 
     /**
@@ -69,7 +70,8 @@ public class Application extends Controller {
      * @return список записей в формате Json
      */
     public static Result notesJson() {
-        List<Note> all = Note.all();
+        //List<Note> all = Note.all();
+        List<Note> all = Note.find.where().like("authorEMail", session("email")).findList();
         return ok(toJson(all));  //toJson преобразует объект или список объектов в соответствующий JSON
     }
 
@@ -165,9 +167,9 @@ public class Application extends Controller {
             }
 
 
-            note.cellPhone = json.findPath("cellPhone").asText();
-            note.homePhone = json.findPath("homePhone").asText();
-            note.name = json.findPath("name").asText();//ищем в json значение параметра cellPhone и возвращаем в качестве строки
+            note.title = json.findPath("title").asText();
+            note.message = json.findPath("message").asText();
+            note.authorEMail = session("email");
 
             //сохраняем новый объект или редактируем старый
             play.Logger.info("trying to save to DB");

@@ -1,10 +1,10 @@
 //Model паттерна MVVM - класс модели для записи, включая три поля и скрытое поле id - полный аналог из модели DB
-function Note(id, name, homePhone, cellPhone) {
+function Note(id, title, message, authorEMail) {
     var self = this;
-    self.name = ko.observable(name);
-    self.homePhone = ko.observable(homePhone);
-    self.cellPhone = ko.observable(cellPhone);
+    self.title = ko.observable(title);
+    self.message = ko.observable(message);
     self.id = id; // не observable поле
+    self.authorEMail = ko.observable(authorEMail);
 }
 
 //ViewModel паттерна MVVM, бизнес-логика
@@ -17,9 +17,9 @@ function NotesViewModel() {
     // Поля формы
     //todo сделать поля observable
     self.id = ko.observable(null);
-    self.name = ko.observable("");
-    self.cellPhone = ko.observable("");
-    self.homePhone = ko.observable("");
+    self.authorEMail = ko.observable("");
+    self.title = ko.observable("");
+    self.message = ko.observable("");
 
     // Операции
 
@@ -49,7 +49,7 @@ function NotesViewModel() {
             success: function (data) {
                 console.log("Успешно обработан json запрос. Записи загружены");
                 for (i = 0; i < data.length; i++) {
-                    self.notes.push(new Note(data[i].id, data[i].name, data[i].homePhone, data[i].cellPhone));
+                    self.notes.push(new Note(data[i].id, data[i].title, data[i].message, data[i].authorEMail));
                 }
             },
             error: function (data) {
@@ -74,9 +74,9 @@ function NotesViewModel() {
      */
     self.cleanForm = function () {
         self.id(null);
-        self.name("");
-       self.homePhone("");
-        self.cellPhone("");
+        self.authorEMail("");
+        self.title("");
+       self.message("");
     };
 
     /*
@@ -86,9 +86,9 @@ function NotesViewModel() {
     self.editNote = function (note) {
         console.log(note);
         self.id(note.id);
-        self.name(note.name());
-        self.homePhone(note.homePhone());
-        self.cellPhone(note.cellPhone());
+        self.authorEMail(note.authorEMail());
+        self.title(note.title());
+        self.message(note.message());
     };
 
     /**
@@ -129,9 +129,9 @@ function NotesViewModel() {
         //Получаем объект Note из observable полей формы
         var note = new Note; //todo, использовать self.id() и др.
         note.id = self.id();
-        note.name(self.name());
-        note.homePhone(self.homePhone());
-        note.cellPhone(self.cellPhone());
+        note.authorEMail(self.authorEMail());
+        note.title(self.title());
+        note.message(self.message());
 
         //Преобразовываем в json-строку с помощью функции ko.toJSON
         var jsonData = ko.toJSON(note); //todo
@@ -159,9 +159,8 @@ function NotesViewModel() {
                     for (i = 0; i < self.notes().length; i++) {
                         if(self.notes()[i].id == note.id){
                             console.log(data.id);
-                            self.notes()[i].name(data.name);
-                            self.notes()[i].homePhone(data.homePhone);
-                            self.notes()[i].cellPhone(data.cellPhone);
+                            self.notes()[i].title(data.title);
+                            self.notes()[i].message(data.message);
                             console.log(self.notes()[i]);
                             break;
                         }
