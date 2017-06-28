@@ -10,7 +10,9 @@
                     <div class="sidebar-nav" data-bind="notebooksViewModel" id="notebooksDiv">
                         <h3>NoteBooks</h3>
                         <table class="table table-striped">
-
+                            <tr>
+                                <td colspan="3" data-bind="click: reloadDefault">Default</td>
+                            </tr>
                             <tbody data-bind="foreach: notebooks">
                                 <tr class='clickable-row'>
                                     <td data-bind="text: title, click: $root.selectNoteBook" width="100%"></td>
