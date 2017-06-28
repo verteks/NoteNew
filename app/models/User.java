@@ -96,10 +96,10 @@ public class User extends Model {
         //todo
         User user = find.byId(email);
         if( user == null) {
-            return "Пользователь с данным email не зарегистрирован";
+            return "Account with this E-Mail is already registered";
         }
         if( !user.checkPassword(password)){
-            return "Неверный пароль";
+            return "Wrong Password";
         }
         return null;
     }

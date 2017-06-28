@@ -52,7 +52,7 @@ public class Admin extends Controller {
         if (cpForm.hasErrors())
             return badRequest(changePassword.render(cpForm));
         else {
-            flash("success","Пароль успешно изменен");
+            flash("success","Password Successfully Changed!");
             User user = Auth.currentUser();
             user.setPassword(cpForm.get().newPassword);
             user.save();

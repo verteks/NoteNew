@@ -27,12 +27,12 @@ import play.data.validation.Constraints.Required;
 public class Register{
 
     //todo обязательное поле с подписью, эл. почта
-    @Email(message = "Некорректный адрес электронной почты")
-    @Required(message = "Не указан e-mail")
+    @Email(message = "Incorrect E-Mail")
+    @Required(message = "E-Mail Required")
     public String email;
 
     //todo обязательное поле с подписью
-    @Required(message = "Не указан пароль")
+    @Required(message = "Password Required")
     public String password;
 
     /**
@@ -44,6 +44,6 @@ public class Register{
      */
     public String validate() {
         //todo
-        return User.emailAvailable(email) ? null : "E-mail уже занят";
+        return User.emailAvailable(email) ? null : "Account with this E-Mail already exists";
     }
 }

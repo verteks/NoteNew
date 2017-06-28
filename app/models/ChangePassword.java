@@ -26,11 +26,11 @@ import play.data.validation.Constraints.*;
  */
 public class ChangePassword{
     //todo обязательное поле с подписью
-    @Required(message = "Неверный пароль")
+    @Required(message = "Wrong Password")
     public String password;
 
     //todo обязательное поле с подписью
-    @Required(message = "Некорректный пароль")
+    @Required(message = "Incorrect Password")
     public String newPassword;
 
 

@@ -1,5 +1,5 @@
 @(regForm: Form[Register])
-    @main("Регистрация") {
+    @mainForForms("Sign up") {
         @if(regForm.hasErrors) {
             <div class="alert alert-danger">
                 <a class="close" data-dismiss="alert">x</a>
@@ -14,10 +14,11 @@
         }
 
         @helper.form(routes.Auth.register()) {
+            <h2 class="form-signin-heading">Sign Up</h2>
             @input(regForm("email"), "Email", 'type -> "email")
-            @input(regForm("password"), "Пароль", 'type -> "password")
+            @input(regForm("password"), "Password", 'type -> "password")
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <button type="submit" class="btn btn-primary">Sigh Up</button>
             </div>
         }
     }

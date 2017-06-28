@@ -29,7 +29,7 @@
     <body>
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -37,7 +37,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">Notes</a>
+                    <!--<a class="navbar-brand" href="/">Notes</a>-->
+                    <img src="@routes.Assets.at("images/icon_n.png")" height="50" width="50" href="/#">
                 </div>
 
 
@@ -47,21 +48,21 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Auth.currentUserEmail() <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="@routes.Admin.changePassword()">Сменить пароль</a></li>
+                                <li><a href="@routes.Admin.changePassword()">Change Password</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="@routes.Auth.logout()">Выйти</a></li>
+                                <li><a href="@routes.Auth.logout()">Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
                 } else {
                     <form class="navbar-form navbar-right" action="@routes.Auth.auth()" method="POST">
                         <div class="form-group">
-                            <input name="email" type="text" placeholder="Email" class="form-control">
+                            <input name="email" type="text" placeholder="E-mail" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input name="password" type="password" placeholder="Пароль" class="form-control">
+                            <input name="password" type="password" placeholder="Password" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-success">Войти</button>
+                        <button type="submit" class="btn btn-success">Log In</button>
                     </form>
                 }
                 </div>
@@ -69,18 +70,10 @@
                     <!--/.navbar-collapse -->
             </div>
         </nav>
-
-
-            <!-- Main jumbotron for a primary marketing message or call to action -->
-         <div class="jumbotron">
-            <div class="container">
-                <!--  <h1>Secured</h1>
-                <p>Это демо-приложение реализовывает основные сценарии аутентификации в PlayFramework 2. Реализовывается идентификация по электронной почте, аутентификация по паролю, хэшированному с солью, изменение пароля.</p>
-                <p><a class="btn btn-primary btn-lg" href="@routes.Admin.changePassword()" role="button">Профиль &raquo;</a></p> -->
-            </div>
-        </div>
-
-        <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="container-fluid">
             @if(flash().get("success") != null) {
                 <div class="alert alert-success">
                     <a class="close" data-dismiss="alert">x</a>
@@ -93,5 +86,6 @@
             <footer>
             </footer>
         </div> <!-- /container -->
+
     </body>
 </html>

@@ -47,7 +47,6 @@ public class Auth extends Controller {
             //Установка ключа email в сессии равной email аутентифицированного пользователя.
             session("email", loginForm.get().email);
             //При успехе можем установить во flash значение строки успеха, которое будет отображено в интерфейсе с помощью alert
-            flash("success","Вы успешно аутентифицировались. Добро пожаловать!");
             //в случае успеха переходим на главную страницу
             return redirect(routes.Application.index());
         }
@@ -100,7 +99,6 @@ public class Auth extends Controller {
             User user = new User(rForm.get().email,rForm.get().password);
             user.save();
             session("email", rForm.get().email);
-            flash("success","Вы успешно аутентифицировались. Добро пожаловать!");
             return redirect(routes.Application.index());
         }
     }
