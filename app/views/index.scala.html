@@ -15,7 +15,8 @@
                     <td data-bind="text: message"></td>
                     <td>
                         <a href="#" data-bind="click: $root.editNote" class="btn btn-default">Редактировать</a>
-                        <a href="#" data-bind="click: $root.removeNote" class="btn btn-danger">Удалить</a>
+                        <!--<a href="#" data-bind="click: $root.removeNote" class="btn btn-danger">Удалить</a>-->
+                        <img src="bootstrap/cross.png" data-bind="click: $root.removeNote">
                     </td>
                 </tr>
             </tbody>
