@@ -17,8 +17,11 @@ POST    /profile/change controllers.Admin.changePasswordConfirm()
 #API
 GET     /api/notes                  controllers.Application.notesJson()
 POST    /api/notes                  controllers.Application.saveNoteJson()
-#PUT     /api/notes                  controllers.Application.saveNoteJson()
 DELETE  /api/notes                  controllers.Application.deleteNoteJson()
+
+GET     /api/notebooks              controllers.Application.noteBooksJson()
+POST    /api/notebooks              controllers.Application.saveNoteBookJson()
+DELETE  /api/notebooks              controllers.Application.deleteNoteBookJson()
 
 GET     /api/jsRoutes               controllers.Application.jsRoutes
 

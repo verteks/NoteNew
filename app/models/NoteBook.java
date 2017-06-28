@@ -8,32 +8,28 @@ import javax.persistence.Id;
 import java.util.List;
 
 @Entity
-public class Note extends Model {
-
+public class NoteBook extends Model {
     @Id
     public Long id;
-    public Long notebookId;
     @Required
     public String title;
     public String authorEMail;
-    public String message;
 
-    public static Finder<Long, Note> find = new Finder<Long, Note>(
-            Long.class, Note.class
+    public static Model.Finder<Long, NoteBook> find = new Model.Finder<Long, NoteBook>(
+            Long.class, NoteBook.class
     );
 
-    public static Note findById(long id){
+    public static NoteBook findById(long id){
         return find.ref(id);
     }
 
 
-    public static List<Note> all() {
+    public static List<NoteBook> all() {
         return find.all();
     }
 
     @Deprecated
-    public static void edit(Note note, Long id) {
-        note.update(id);
+    public static void edit(NoteBook notebook, Long id) {
+        notebook.update(id);
     }
-
 }
