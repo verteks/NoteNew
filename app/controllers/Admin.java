@@ -19,14 +19,14 @@ public class Admin extends Controller {
     /**
      * Возвращает страницу профиля с формой смены пароля.
      *
-     * Используются стандартные средства Form[ChangePassword.class] и шаблон profile.scala.html
+     * Используются стандартные средства Form[ChangePassword.class] и шаблон changePassword.scala.htmlla.html
      *
      * @return страницу профиля с формой смены пароля
      */
-    public static Result profile() {
+    public static Result changePassword() {
         //todo
         Form<ChangePassword> cpForm = Form.form(ChangePassword.class);
-        return ok(profile.render(cpForm));
+        return ok(changePassword.render(cpForm));
     }
 
     /**
@@ -45,19 +45,19 @@ public class Admin extends Controller {
      * Подсказка: Задать success-сообщение можно с помощью
      * flash("success", "Пароль успешно изменен");
      */
-    public static Result changePassword() {
+    public static Result changePasswordConfirm() {
         //todo
 
         Form<ChangePassword> cpForm = Form.form(ChangePassword.class).bindFromRequest();
         if (cpForm.hasErrors())
-            return badRequest(profile.render(cpForm));
+            return badRequest(changePassword.render(cpForm));
         else {
             flash("success","Пароль успешно изменен");
             User user = Auth.currentUser();
             user.setPassword(cpForm.get().newPassword);
             user.save();
             Form<ChangePassword> cpForm1 = Form.form(ChangePassword.class);
-            return ok(profile.render(cpForm1));
+            return ok(changePassword.render(cpForm1));
         }
 
     }
