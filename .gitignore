@@ -1,7 +1,5 @@
 logs
 project/project
-project/target
-target
 tmp
 .history
 dist
@@ -13,5 +11,3 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-conf/evolutions
-.cache

@@ -1,0 +1,90 @@
+@(noteForm: Form[Note], noteBookForm: Form[NoteBook])
+
+@import bootstrap._
+
+@main("Notes") {
+    <div class="container-fluid">
+        <div>
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+                    <div class="sidebar-nav" data-bind="notebooksViewModel" id="notebooksDiv">
+                        <h3>NoteBooks</h3>
+                        <table class="table table-striped">
+                            <tr>
+                                <td colspan="3" data-bind="click: reloadDefault">Default</td>
+                            </tr>
+                            <tbody data-bind="foreach: notebooks">
+                                <tr class='clickable-row'>
+                                    <td data-bind="text: title, click: $root.selectNoteBook" width="100%"></td>
+                                    <td align="right">
+                                        <img src="@routes.Assets.at("images/edit.png")" height="16" width="16" data-bind="click: $root.editNoteBook" >
+                                    </td>
+                                    <td align="right">
+                                        <img src="@routes.Assets.at("images/cross.png")" height="16" width="16" data-bind="click: $root.removeNoteBook" >
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <form>
+                                        <div class="col-md-10">
+                                            @inputField(noteBookForm("title"), "Enter NoteBook Title", "", "value: title")
+                                        </div>
+                                        <div class="col-md-2" align="right">
+                                            <!--<button type="submit" value="submit" class = "btn btn-default" data-bind="click: $root.saveNoteBook">Save</button>-->
+                                            <input type="image" src="@routes.Assets.at("images/plus.png")" data-bind="click: $root.saveNoteBook" alt="Submit Form" height="34" width="34"/>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                        <!--/.well -->
+                </div>
+                <div data-bind="notesViewModel" id="notesDiv">
+                    <div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+                        <div class="sidebar-nav">
+                            <h3 id="notesLabel" data-bind="click: reloadDefault">Notes (Default)</h3>
+                            <table class="table table-striped">
+
+                                <tbody data-bind="foreach: notes">
+                                    <tr class='clickable-row'>
+                                        <td data-bind="text: title, click: $root.editNote" ></td>
+                                        <td align="right">
+                                            <img src="@routes.Assets.at("images/cross.png")" height="16" width="16" data-bind="click: $root.removeNote" >
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-8">
+
+
+
+
+
+
+                        <form>
+                            @text(noteForm("title"),  "Title", "Enter Note Title", "", "value: title")
+                            @textArea(noteForm("message"), "Text", "Enter The Note Text", "" , "value: message")
+                            <button type="submit" value="submit" class = "btn btn-default" data-bind="click: $root.saveNote">Save</button>
+                        </form>
+
+                        <script language = "javascript" lang="javascript" src ='@routes.Assets.at("javascripts/app.js")'></script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

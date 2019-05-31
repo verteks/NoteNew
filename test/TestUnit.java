@@ -46,14 +46,14 @@ public class TestUnit {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 assertThat(Note.find.all().size()).isEqualTo(0);
-                Note note = null;
+                Note note = new Note();
                 note.title = "title";
                 note.message = "message";
                 note.authorEMail ="email";
                 note.notebookId =(long) 5;
                 note.save();
-                assertThat(Note.find.all().size()).isEqualTo(0);
-                assertThat(Note.find.byId((long)5)).isNotNull();
+                assertThat(Note.find.all().size()).isEqualTo(1);
+                assertThat(Note.find.byId(note.id)).isNotNull();
                 note.delete();
                 assertThat(Note.find.all().size()).isEqualTo(0);
             }

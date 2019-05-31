@@ -1,0 +1,31 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET		/				controllers.Application.index()
+GET		/login  		controllers.Auth.login()
+GET		/register		controllers.Auth.signup()
+GET		/news			controllers.Application.index()
+POST	/login			controllers.Auth.auth()
+GET	    /logout			controllers.Auth.logout()
+POST	/register		controllers.Auth.register()
+GET     /changePassword        controllers.Admin.changePassword()
+POST    /profile/change controllers.Admin.changePasswordConfirm()
+
+
+#API
+GET     /api/notes                  controllers.Application.notesJson()
+POST    /api/notes                  controllers.Application.saveNoteJson()
+DELETE  /api/notes                  controllers.Application.deleteNoteJson()
+
+GET     /api/notebooks              controllers.Application.noteBooksJson()
+POST    /api/notebooks              controllers.Application.saveNoteBookJson()
+DELETE  /api/notebooks              controllers.Application.deleteNoteBookJson()
+
+GET     /api/jsRoutes               controllers.Application.jsRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+GET		/assets/*file	controllers.Assets.at(path="/public", file)
+GET		/*path			controllers.Application.error(path: String)
+

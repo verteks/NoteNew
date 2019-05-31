@@ -1,0 +1,24 @@
+@(regForm: Form[Register])
+    @mainForForms("Sign up") {
+        @if(regForm.hasErrors) {
+            <div class="alert alert-danger">
+                <a class="close" data-dismiss="alert">x</a>
+                @if(regForm.errors.size() > 0) {
+                    @for((key, value) <- regForm.errors) {
+                        @for(err <- value) {
+                            <p>@err.message().toString()</p>
+                        }
+                    }
+                }
+            </div>
+        }
+
+        @helper.form(routes.Auth.register()) {
+            <h2 class="form-signin-heading">Sign Up</h2>
+            @input(regForm("email"), "Email", 'type -> "email")
+            @input(regForm("password"), "Password", 'type -> "password")
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sigh Up</button>
+            </div>
+        }
+    }
